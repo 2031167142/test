@@ -8,16 +8,16 @@ import Search from '../views/Search/Search.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/', redirect: Home },
+  { path: '/', redirect: '/home' },
   { path: '/home', component: Home },
   { path: '/user', component: User },
-  { path: '/search', component: Search }
+  { path: '/search', component: Search },
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes,
 })
 
 export default router
