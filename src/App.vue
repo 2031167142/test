@@ -2,7 +2,7 @@
   <div class="main">
     <div class="router-con">
       <router-view>
-        <Article></Article>
+        <Articleinfo></Articleinfo>
       </router-view>
     </div>
     <van-tabbar route>
@@ -15,12 +15,13 @@
 <script>
 import { Tabbar, TabbarItem } from 'vant'
 import request from './utils/request'
+import Articleinfo from './components/articleinfo/Articleinfo'
 // import { getChannelList } from './api/homeAPI'
-import Article from './components/Article/Article'
+
 export default {
   name: 'App',
   components: {
-    Article,
+    Articleinfo,
     [Tabbar.name]: Tabbar,
     [TabbarItem.name]: TabbarItem,
   },
