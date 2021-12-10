@@ -17,6 +17,6 @@ module.exports = {
     'semi-style': ["error", "last"],
     'semi': [0],
     'quotes': [1, 'single'],
-    "space-before-function-paren": ["error", "never"],
+    "space-before-function-paren": [0],
   }
 }
