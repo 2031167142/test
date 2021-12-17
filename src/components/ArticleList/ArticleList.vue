@@ -18,8 +18,9 @@
         <ArticleItem
           v-for="(item, index) in ArticleList"
           :key="index"
-          :aut_name="ArticleList[index].aut_name"
           :title="ArticleList[index].title"
+          :art_id="ArticleList[index].art_id"
+          :aut_name="ArticleList[index].aut_name"
           :comm_count="ArticleList[index].comm_count"
           :pubdate="ArticleList[index].pubdate"
           :images="ArticleList[index].cover.images"
@@ -32,8 +33,8 @@
 
 <script>
 import { getArticleListAPI } from '../../api/articleAPI'
-import ArticleItem from '../ArticleItem/ArticleItem'
 
+import ArticleItem from '../ArticleItem/ArticleItem'
 import { List, PullRefresh } from 'vant'
 
 export default {
