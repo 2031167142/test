@@ -25,6 +25,7 @@
           :pubdate="ArticleList[index].pubdate"
           :images="ArticleList[index].cover.images"
           :type="ArticleList[index].cover.type"
+          @remove-article="removeArticle"
         ></ArticleItem>
       </van-list>
     </van-pull-refresh>
@@ -32,9 +33,9 @@
 </template>
 
 <script>
-import { getArticleListAPI } from '../../api/articleAPI'
+import { getArticleListAPI } from '@/api/articleAPI'
 
-import ArticleItem from '../ArticleItem/ArticleItem'
+import ArticleItem from '@/components/ArticleItem/ArticleItem'
 import { List, PullRefresh } from 'vant'
 
 export default {
@@ -102,6 +103,13 @@ export default {
     onRefresh() {
       // 下拉加载
       this.initArticleList(true)
+    },
+    // 从文章列表中移除指定 id 的文章
+    removeArticle(id) {
+      // 对原数组进行 filter 方法的过滤
+      this.ArticleList = this.ArticleList.filter(
+        (item) => item.art_id.toString() !== id
+      )
     },
   },
 }

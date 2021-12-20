@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="login-box">
     <van-nav-bar title="牛马头条 - 登录" placeholder />
     <van-form @submit="login">
       <van-field
@@ -29,7 +29,9 @@
 
 <script>
 import { NavBar, Form, Field, Button } from 'vant'
-import { loginAPI } from '../../api/userAPI'
+import { loginAPI } from '@/api/userAPI'
+// 1. 按需导入辅助方法
+import { mapMutations } from 'vuex'
 export default {
   name: 'Login',
   components: {
@@ -67,6 +69,8 @@ export default {
     }
   },
   methods: {
+    // 2. 映射 mutations 中的方法
+    ...mapMutations(['updateTokenInfo']),
     async login() {
       // 只有当表单数据校验通过之后，才会调用此 login 函数
       const { data: res } = await loginAPI(this.form)
@@ -74,12 +78,24 @@ export default {
 
       // 判断是否登录成功了
       if (res.message === 'OK') {
-        // TODO1：把登录成功的结果，存储到 vuex 中
-        // TODO2：登录成功后，跳转到主页
+        // 3. 把登录成功的结果，存储到 vuex 中
+        this.updateTokenInfo(res.data)
+        // 4. 登录成功后，跳转到主页
+        this.$router.push('/')
       }
     },
   },
 }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.login-box {
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: white;
+}
+</style>

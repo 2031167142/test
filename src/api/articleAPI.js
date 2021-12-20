@@ -1,4 +1,4 @@
-import request from '../utils/request'
+import request from '@/utils/request'
 
 // 获取频道下的文章列表数据
 export const getArticleListAPI = function (channelID, timestamp) {

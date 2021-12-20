@@ -66,8 +66,8 @@
 
 <script>
 import { ActionSheet, Cell, Toast } from 'vant'
-import reports from '../../api/reports'
-import { dislikeArticleAPI } from '../../api/homeAPI.js'
+import reports from '@/api/reports'
+import { dislikeArticleAPI } from '@/api/homeAPI.js'
 
 export default {
   name: 'ArticleItem',
@@ -136,21 +136,27 @@ export default {
       Toast('取消')
     },
     async onCellClick(name) {
-      if (name === '不感兴趣') {
-        const { data: res } = await dislikeArticleAPI(this.art_id)
-        // 未登录状态 401 无法获取
+      // 判断是否登录
+      if (this.$store.state.tokenInfo.token) {
+        if (name === '不感兴趣') {
+          const { data: res } = await dislikeArticleAPI(this.artId)
 
-        if (res.message === 'OK') {
-          // TODO：炸楼的操作
+          if (res.message === 'OK') {
+            // TODO：炸楼的操作，触发自定义的事件，将文章 id 发送给父组件
+            this.$emit('remove-article', this.artId)
+          }
+          this.show = false
+        } else if (name === '拉黑作者') {
+          console.log('拉黑作者')
+          this.show = false
+        } else if (name === '反馈垃圾内容') {
+          this.cancelText = ''
+          // TODO：展示二级反馈面板
+          this.isFirst = false
         }
-        this.show = false
-      } else if (name === '拉黑作者') {
-        console.log('拉黑作者')
-        this.show = false
-      } else if (name === '反馈垃圾内容') {
-        this.cancelText = ''
-        // TODO：展示二级反馈面板
-        this.isFirst = false
+      } else {
+        // 未登录跳转到登录界面
+        this.$router.push('/login')
       }
     },
   },
@@ -162,6 +168,11 @@ export default {
         flex = this.imgflex
       }
       return flex
+    },
+    // 文章 Id 的计算属性
+    artId() {
+      // 注意：文章对象的 art_id 是大数对象，需要调用 .toString() 方法转换为字符串形式
+      return this.art_id.toString()
     },
   },
 }
@@ -177,16 +188,16 @@ export default {
 .article-con {
   width: 95vw;
   // 让盒子居中
-  margin: 10px 2.5vw;
+  margin: 0.625rem 2.5vw;
   min-height: 8vh;
 
   .article-head {
     display: flex;
     justify-content: space-between;
     h4 {
-      margin-bottom: 10px !important;
+      margin-bottom: 0.625rem !important;
       margin: 0;
-      font-size: 14px;
+      font-size: 0.875rem;
       font-weight: 100;
     }
 
@@ -195,8 +206,8 @@ export default {
       justify-content: center;
       img {
         // flex: 1;
-        height: 70px;
-        padding: 3px;
+        height: 4.375rem;
+        padding: 0.1875rem;
         min-width: 30vw;
         max-width: 30vw;
       }

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
+import router from '@/router'
+import store from '@/store'
 import 'vant/lib/index.less'
 
 // 懒加载
@@ -9,8 +10,10 @@ import { Lazyload } from 'vant'
 import dayjs from 'dayjs'
 // 导入计算相对时间的插件
 import relativeTime from 'dayjs/plugin/relativeTime'
+
 // 导入中文语言包
 import zh from 'dayjs/locale/zh-cn'
+
 // 配置“计算相对时间”的插件
 dayjs.extend(relativeTime)
 // 配置中文语言包
@@ -29,5 +32,6 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')

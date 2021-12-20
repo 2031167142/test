@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="search-box">
     <!-- Header 头部区域 -->
     <div class="search-header">
       <!-- 后退图标 -->
@@ -28,19 +28,28 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.search-header {
-  height: 46px;
-  display: flex;
-  align-items: center;
-  background-color: #007bff;
-  overflow: hidden;
-  // 后退按钮
-  .goback {
-    padding-left: 14px;
-  }
-  // 搜索组件
-  .van-search {
-    flex: 1;
+.search-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background-color: white;
+  .search-header {
+    height: 46px;
+    display: flex;
+    align-items: center;
+    background-color: #007bff;
+    overflow: hidden;
+    // 后退按钮
+    .goback {
+      padding-left: 14px;
+    }
+    // 搜索组件
+    .van-search {
+      flex: 1;
+    }
   }
 }
 </style>

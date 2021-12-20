@@ -7,7 +7,12 @@
         <img src="../../assets/logo.png" alt="logo" class="logo" />
       </template>
       <template #right>
-        <van-icon name="search" size="20" color="white" />
+        <van-icon
+          name="search"
+          size="20"
+          color="white"
+          @click="$router.push('/search')"
+        />
       </template>
     </van-nav-bar>
 
@@ -30,8 +35,8 @@
 
 <script>
 import { NavBar, Tab, Tabs, Icon } from 'vant'
-import request from '../../utils/request'
-import ArticleList from '../../components/ArticleList/ArticleList'
+import request from '@/utils/request'
+import ArticleList from '@/components/ArticleList/ArticleList'
 
 export default {
   name: 'Home',
