@@ -3,9 +3,8 @@ import App from './App.vue'
 import router from '@/router'
 import store from '@/store'
 import 'vant/lib/index.less'
-
-// 懒加载
 import { Lazyload } from 'vant'
+
 // 导入 dayjs 的核心模块
 import dayjs from 'dayjs'
 // 导入计算相对时间的插件
@@ -27,7 +26,6 @@ Vue.filter('dateFormat', dt => {
 })
 
 Vue.use(Lazyload)
-
 Vue.config.productionTip = false
 
 new Vue({

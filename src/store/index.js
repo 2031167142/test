@@ -10,6 +10,7 @@ let initState = {
 }
 
 const stateStr = localStorage.getItem('state')
+
 if (stateStr) {
   // 加载本地的数据
   initState = JSON.parse(stateStr)
@@ -37,8 +38,11 @@ export default new Vuex.Store({
       this.commit('saveStateToStorage')
     },
     rmeoveToken(state) {
+      // console.log('无法执行');
+      // console.log('[vuex] unknown mutation type: removeToken');
+
+      localStorage.removeItem('state');
       state.tokenInfo = ''
-      // localStorage.removeItem('state');
     }
   },
   actions: {
